@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="bank.BankController" spacing="0" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0">
+	<Pane fx:id="BannerPane" prefHeight="200.0" prefWidth="800.0">
+		<Label text="Welcome to the Big Bank" layoutX="20.0" layoutY="20.0" style="-fx-font-size: 64px; -fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
+		<Circle fx:id="circle1" centerX="60.0" centerY="150.0" radius="22.0" fill="#8BC34A"/>
+		<Circle fx:id="circle2" centerX="40.0" centerY="150.0" radius="18.0" fill="#ff0000ff"/>
+		<Circle fx:id="circle3" centerX="20.0" centerY="150.0" radius="14.0" fill="#ffff00ff"/>
+	</Pane>
+	<VBox spacing="32.0" alignment="TOP_CENTER" prefWidth="800.0">
+		<HBox spacing="32.0" alignment="CENTER">
+			<VBox>
+				<Label text="Account Number" style="-fx-font-size: 16px; -fx-text-fill: #333;"/>
+				<TextField fx:id="InsertAccNumber" prefWidth="260" style="-fx-font-size: 22px;"/>
+			</VBox>
+			<VBox>
+				<Label text="PIN" style="-fx-font-size: 16px; -fx-text-fill: #333;"/>
+				<TextField fx:id="InsertPinNumber" prefWidth="260" style="-fx-font-size: 22px;"/>
+			</VBox>
+			<Button fx:id="PinAccept" text="Create Account" onAction="#onPinAccept" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 20px; -fx-background-radius: 14;" prefWidth="200" prefHeight="60"/>
+		</HBox>
+		<HBox spacing="32.0" alignment="CENTER">
+			<Button fx:id="StateOfAccount" text="Check Balance" onAction="#onStateOfAccount" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 26px; -fx-background-radius: 14;" prefWidth="200" prefHeight="60"/>
+			<Button fx:id="DepositMoney" text="Deposit" onAction="#onDepositMoney" style="-fx-background-color: #8BC34A; -fx-text-fill: white; -fx-font-size: 26px; -fx-background-radius: 14;" prefWidth="200" prefHeight="60"/>
+			<Button fx:id="MoneyToWith" text="Withdraw" onAction="#onMoneyToWith" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 26px; -fx-background-radius: 14;" prefWidth="200" prefHeight="60"/>
+		</HBox>
+		<HBox spacing="32.0" alignment="CENTER">
+			<Label text="Amount : " style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+			<TextField fx:id="AmmountMoneyToWid" prefWidth="260" style="-fx-font-size: 22px;"/>
+		</HBox>
+		<TextField fx:id="InfoTetx" editable="false" promptText="Status / Info" prefWidth="700" style="-fx-background-color: #eee; -fx-border-color: #2196F3; -fx-font-size: 22px; -fx-text-fill: #333;"/>
+	</VBox>
+</VBox>
