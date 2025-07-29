@@ -10,10 +10,10 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="bank.BankController" spacing="0" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0">
 	<Pane fx:id="BannerPane" prefHeight="200.0" prefWidth="800.0">
-		<Label text="Welcome to the Big Bank" layoutX="20.0" layoutY="20.0" style="-fx-font-size: 64px; -fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
+		<Label text="Welcome to the Big Bank" layoutX="20.0" layoutY="20.0" style="-fx-font-size: 64px; -fx-font-weight: bold; -fx-text-fill: #2288FF;"/>
 		<Circle fx:id="circle1" centerX="60.0" centerY="150.0" radius="22.0" fill="#8BC34A"/>
-		<Circle fx:id="circle2" centerX="40.0" centerY="150.0" radius="18.0" fill="#ff0000ff"/>
-		<Circle fx:id="circle3" centerX="20.0" centerY="150.0" radius="14.0" fill="#ffff00ff"/>
+		<Circle fx:id="circle2" centerX="40.0" centerY="150.0" radius="18.0" fill="#FF9800"/>
+		<Circle fx:id="circle3" centerX="20.0" centerY="150.0" radius="14.0" fill="#FFC107"/>
 	</Pane>
 	<VBox spacing="32.0" alignment="TOP_CENTER" prefWidth="800.0">
 		<HBox spacing="32.0" alignment="CENTER">
@@ -36,6 +36,6 @@
 			<Label text="Amount : " style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
 			<TextField fx:id="AmmountMoneyToWid" prefWidth="260" style="-fx-font-size: 22px;"/>
 		</HBox>
-		<TextField fx:id="InfoTetx" editable="false" promptText="Status / Info" prefWidth="700" style="-fx-background-color: #eee; -fx-border-color: #2196F3; -fx-font-size: 22px; -fx-text-fill: #333;"/>
+		<TextField fx:id="InfoText" editable="false" promptText="Status / Info" prefWidth="700" style="-fx-background-color: #eee; -fx-border-color: #333; -fx-font-size: 22px; -fx-text-fill: #333;"/>
 	</VBox>
 </VBox>

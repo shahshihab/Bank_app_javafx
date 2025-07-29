@@ -7,6 +7,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.animation.RotateTransition;
+import javafx.animation.FadeTransition;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.text.Text;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import javafx.geometry.Pos;
 
 public class Main extends Application {
     private static String UI = "/UI.fxml";
@@ -16,27 +28,27 @@ public class Main extends Application {
         // Create overlay for animation
         StackPane overlay = new StackPane();
         overlay.setStyle("-fx-background-color: white;");
-        javafx.scene.layout.HBox splashBox = new javafx.scene.layout.HBox(20);
-        splashBox.setAlignment(javafx.geometry.Pos.CENTER);
+        HBox splashBox = new HBox(20);
+        splashBox.setAlignment(Pos.CENTER);
 
         // Logo design
-        javafx.scene.layout.StackPane logoPane = new javafx.scene.layout.StackPane();
-        javafx.scene.shape.Circle coin = new javafx.scene.shape.Circle(40, javafx.scene.paint.Color.GOLD);
-        javafx.scene.text.Text dollar = new javafx.scene.text.Text("$");
-        dollar.setStyle("-fx-font-size: 64px; -fx-font-weight: bold; -fx-fill: #ffffffff;");
+        StackPane logoPane = new StackPane();
+        Circle coin = new Circle(40, Color.GOLD);
+        Text dollar = new Text("$");
+        dollar.setStyle("-fx-font-size: 64px; -fx-font-weight: bold; -fx-fill: #ffaa00ff;");
         logoPane.getChildren().addAll(coin, dollar);
 
         // Animate logo
-        javafx.animation.RotateTransition rotate = new javafx.animation.RotateTransition(javafx.util.Duration.seconds(2), logoPane);
+        RotateTransition rotate = new RotateTransition(Duration.seconds(2), logoPane);
         rotate.setByAngle(360);
-        rotate.setCycleCount(javafx.animation.Animation.INDEFINITE);
+        rotate.setCycleCount(Animation.INDEFINITE);
         rotate.play();
 
         VBox vbox = new VBox(10);
-        vbox.setAlignment(javafx.geometry.Pos.CENTER);
-        javafx.scene.text.Text title = new javafx.scene.text.Text("THE BIG BANK");
-        title.setStyle("-fx-font-size: 64px; -fx-font-weight: bold; -fx-fill: #2196F3;");
-        javafx.scene.text.Text subtitle = new javafx.scene.text.Text("The Bank For Everyone");
+        vbox.setAlignment(Pos.CENTER);
+        Text title = new Text("THE BIG BANK");
+        title.setStyle("-fx-font-size: 64px; -fx-font-weight: bold; -fx-fill: #2288ff;");
+        Text subtitle = new Text("The Bank For Everyone");
         subtitle.setStyle("-fx-font-size: 32px; -fx-fill: #333;");
         vbox.getChildren().addAll(title, subtitle);
 
@@ -51,10 +63,10 @@ public class Main extends Application {
         primaryStage.show();
 
         // Fade out animation
-        javafx.animation.FadeTransition fade = new javafx.animation.FadeTransition(javafx.util.Duration.seconds(2), overlay);
+        FadeTransition fade = new FadeTransition(Duration.seconds(2), overlay);
         fade.setFromValue(1.0);
         fade.setToValue(0.0);
-        fade.setDelay(javafx.util.Duration.seconds(5));
+        fade.setDelay(Duration.seconds(5));
         fade.setOnFinished(_ -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(UI));
@@ -64,28 +76,28 @@ public class Main extends Application {
                 primaryStage.centerOnScreen();
 
                 // Animate banner circles
-                javafx.scene.shape.Circle circle1 = (javafx.scene.shape.Circle) frame.lookup("#circle1");
-                javafx.scene.shape.Circle circle2 = (javafx.scene.shape.Circle) frame.lookup("#circle2");
-                javafx.scene.shape.Circle circle3 = (javafx.scene.shape.Circle) frame.lookup("#circle3");
+                Circle circle1 = (Circle) frame.lookup("#circle1");
+                Circle circle2 = (Circle) frame.lookup("#circle2");
+                Circle circle3 = (Circle) frame.lookup("#circle3");
                 if (circle1 != null && circle2 != null && circle3 != null) {
-                    javafx.animation.Timeline timeline = new javafx.animation.Timeline(
-                        new javafx.animation.KeyFrame(javafx.util.Duration.seconds(0),
-                            new javafx.animation.KeyValue(circle1.centerXProperty(), 60),
-                            new javafx.animation.KeyValue(circle2.centerXProperty(), 400),
-                            new javafx.animation.KeyValue(circle3.centerXProperty(), 740)
+                    Timeline timeline = new Timeline(
+                        new KeyFrame(Duration.seconds(0),
+                            new KeyValue(circle1.centerXProperty(), 00),
+                            new KeyValue(circle2.centerXProperty(), 100),
+                            new KeyValue(circle3.centerXProperty(), 200)
                         ),
-                        new javafx.animation.KeyFrame(javafx.util.Duration.seconds(2),
-                            new javafx.animation.KeyValue(circle1.centerXProperty(), 740),
-                            new javafx.animation.KeyValue(circle2.centerXProperty(), 60),
-                            new javafx.animation.KeyValue(circle3.centerXProperty(), 400)
+                        new KeyFrame(Duration.seconds(2),
+                            new KeyValue(circle1.centerXProperty(), 600),
+                            new KeyValue(circle2.centerXProperty(), 700),
+                            new KeyValue(circle3.centerXProperty(), 800)
                         ),
-                        new javafx.animation.KeyFrame(javafx.util.Duration.seconds(4),
-                            new javafx.animation.KeyValue(circle1.centerXProperty(), 60),
-                            new javafx.animation.KeyValue(circle2.centerXProperty(), 400),
-                            new javafx.animation.KeyValue(circle3.centerXProperty(), 740)
+                        new KeyFrame(Duration.seconds(4),
+                            new KeyValue(circle1.centerXProperty(), 00),
+                            new KeyValue(circle2.centerXProperty(), 100),
+                            new KeyValue(circle3.centerXProperty(), 200)
                         )
                     );
-                    timeline.setCycleCount(javafx.animation.Animation.INDEFINITE);
+                    timeline.setCycleCount(Animation.INDEFINITE);
                     timeline.setAutoReverse(false);
                     timeline.play();
                 }

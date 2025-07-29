@@ -2,13 +2,18 @@ package bank;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.util.Duration;
+
 
 public class BankController {
-    private javafx.animation.Timeline infoFlashTimeline;
+    private Timeline infoFlashTimeline;
     @FXML private TextField InsertAccNumber;
     @FXML private TextField InsertPinNumber;
     @FXML private TextField AmmountMoneyToWid;
-    @FXML private TextField InfoTetx;
+    @FXML private TextField InfoText;
     @FXML private Button PinAccept;
     @FXML private Button StateOfAccount;
     @FXML private Button MoneyToWith;
@@ -117,21 +122,26 @@ public class BankController {
         }
     }
 
-    // Flash InfoTetx border: green for good, red for bad
+    // Flash InfoText border: green for success, red for error
     private void setInfoText(String text, boolean isGood) {
-        InfoTetx.setText(text);
-        String color1 = isGood ? "#4CAF50" : "#F44336";
-        String color2 = "#eeeeee";
+        InfoText.setText(text);
+        String color1 = isGood ? "#21c421ff" : "#ca2020ff";
+        String baseStyle = "-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-border-color: #fff;";
+        String finalStyle = "-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-border-color: " + color1 + ";";
+        InfoText.setStyle(finalStyle);
+
         if (infoFlashTimeline != null) infoFlashTimeline.stop();
-        InfoTetx.setStyle("-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 4px; -fx-border-radius: 10px; -fx-border-color: " + color1 + ";");
-        infoFlashTimeline = new javafx.animation.Timeline(
-            new javafx.animation.KeyFrame(javafx.util.Duration.seconds(0.0),
-                new javafx.animation.KeyValue(InfoTetx.styleProperty(), "-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 4px; -fx-border-radius: 10px; -fx-border-color: " + color1 + ";")),
-            new javafx.animation.KeyFrame(javafx.util.Duration.seconds(0.3),
-                new javafx.animation.KeyValue(InfoTetx.styleProperty(), "-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 4px; -fx-border-radius: 10px; -fx-border-color: " + color2 + ";"))
+
+        infoFlashTimeline = new Timeline(
+            new KeyFrame(Duration.seconds(0.0),
+                new KeyValue(InfoText.styleProperty(), finalStyle))
+            , new KeyFrame(Duration.seconds(0.25),
+                new KeyValue(InfoText.styleProperty(), baseStyle))
+            , new KeyFrame(Duration.seconds(0.5),
+                new KeyValue(InfoText.styleProperty(), finalStyle))
         );
-        infoFlashTimeline.setCycleCount(4);
-        infoFlashTimeline.setOnFinished(_ -> InfoTetx.setStyle("-fx-background-color: #eeeeee; -fx-font-size: 22px; -fx-text-fill: #333; -fx-border-width: 4px; -fx-border-radius: 10px; -fx-border-color: " + color1 + ";"));
+        infoFlashTimeline.setCycleCount(2);
+        infoFlashTimeline.setOnFinished(_ -> InfoText.setStyle(finalStyle));
         infoFlashTimeline.play();
     }
 }
